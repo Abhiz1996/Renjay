@@ -213,17 +213,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="portraitSection">
-        <div className="portraitFrame">
-          <img src="/renjay-akhila.jpg" alt="Renjay and Akhila smiling together" />
-        </div>
-        <div className="portraitQuote">
-          <div className="miniMonogram" aria-hidden="true">R <span>&amp;</span> A</div>
-          <blockquote>“Come for the vows,<br />stay for the memories.”</blockquote>
-          <p>13 &amp; 15 September 2026</p>
-        </div>
-      </section>
-
       <footer>
         <p className="footerNames">Renjay <span>&amp;</span> Akhila</p>
         <p>We can’t wait to celebrate with you.</p>

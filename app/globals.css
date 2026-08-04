@@ -53,16 +53,14 @@ a {
   z-index: 20;
 }
 
-.monogram,
-.miniMonogram {
+.monogram {
   color: var(--wine);
   font-family: "Italiana", Georgia, serif;
   font-size: 25px;
   letter-spacing: -2px;
 }
 
-.monogram span,
-.miniMonogram span {
+.monogram span {
   color: var(--gold);
   font-size: 0.72em;
   margin: 0 3px;
@@ -565,62 +563,6 @@ a {
   font-size: 12px;
 }
 
-.portraitSection {
-  background: var(--ivory);
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  min-height: 760px;
-  padding: 8vw;
-}
-
-.portraitFrame {
-  box-shadow: -26px 26px 0 var(--wine);
-  min-height: 620px;
-  overflow: hidden;
-}
-
-.portraitFrame img {
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  width: 100%;
-}
-
-.portraitQuote {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 70px 5vw;
-  text-align: center;
-}
-
-.miniMonogram {
-  border: 1px solid rgba(90, 24, 48, 0.3);
-  border-radius: 50%;
-  display: grid;
-  height: 78px;
-  place-items: center;
-  width: 78px;
-}
-
-.portraitQuote blockquote {
-  color: var(--wine);
-  font-family: "Italiana", Georgia, serif;
-  font-size: clamp(42px, 5vw, 70px);
-  letter-spacing: -0.03em;
-  line-height: 1.12;
-  margin: 42px 0 30px;
-}
-
-.portraitQuote p {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 footer {
   align-items: center;
   background: var(--paper);
@@ -670,8 +612,7 @@ footer a {
   }
 
   .events,
-  .familySection,
-  .portraitSection {
+  .familySection {
     grid-template-columns: 1fr;
   }
 
@@ -679,13 +620,6 @@ footer a {
     gap: 80px;
   }
 
-  .portraitSection {
-    gap: 80px;
-  }
-
-  .portraitQuote {
-    padding-bottom: 30px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -799,24 +733,6 @@ footer a {
 
   .familyNames p {
     font-size: 24px;
-  }
-
-  .portraitSection {
-    gap: 58px;
-    padding: 56px 28px 76px;
-  }
-
-  .portraitFrame {
-    box-shadow: -14px 14px 0 var(--wine);
-    min-height: 480px;
-  }
-
-  .portraitQuote {
-    padding: 20px 0 0;
-  }
-
-  .portraitQuote blockquote {
-    font-size: 44px;
   }
 
   footer {
