@@ -1,0 +1,845 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap");
+
+:root {
+  --wine: #5a1830;
+  --deep-wine: #35101d;
+  --blush: #c98691;
+  --ivory: #f7f0e5;
+  --paper: #fffaf2;
+  --gold: #c5a05d;
+  --ink: #241c1c;
+  --muted: #776b66;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", Arial, sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.siteHeader {
+  align-items: center;
+  background: rgba(255, 250, 242, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(90, 24, 48, 0.11);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: 76px;
+  left: 0;
+  padding: 0 4vw;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
+}
+
+.monogram,
+.miniMonogram {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: 25px;
+  letter-spacing: -2px;
+}
+
+.monogram span,
+.miniMonogram span {
+  color: var(--gold);
+  font-size: 0.72em;
+  margin: 0 3px;
+}
+
+.siteHeader nav {
+  display: flex;
+  gap: 34px;
+}
+
+.siteHeader nav a,
+.headerDate {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.siteHeader nav a {
+  position: relative;
+}
+
+.siteHeader nav a::after {
+  background: var(--wine);
+  bottom: -8px;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+  width: 100%;
+}
+
+.siteHeader nav a:hover::after,
+.siteHeader nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.headerDate {
+  color: var(--wine);
+  justify-self: end;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 54% 46%;
+  min-height: 100svh;
+  padding-top: 76px;
+}
+
+.heroPhoto {
+  background-image: url("/renjay-akhila.jpg");
+  background-position: center 37%;
+  background-size: cover;
+  min-height: 780px;
+  overflow: hidden;
+  position: relative;
+}
+
+.photoWash {
+  background: linear-gradient(180deg, transparent 54%, rgba(25, 8, 13, 0.52));
+  inset: 0;
+  position: absolute;
+}
+
+.photoCaption {
+  bottom: 32px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Italiana", Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  left: 38px;
+  letter-spacing: 0.03em;
+  margin: 0;
+  position: absolute;
+}
+
+.heroContent {
+  align-items: center;
+  background-color: var(--ivory);
+  background-image: radial-gradient(circle at 90% 10%, rgba(197, 160, 93, 0.14), transparent 26%), radial-gradient(circle at 8% 92%, rgba(90, 24, 48, 0.08), transparent 28%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 90px 8% 60px;
+  position: relative;
+  text-align: center;
+}
+
+.heroContent::before,
+.heroContent::after {
+  border: 1px solid rgba(90, 24, 48, 0.18);
+  border-radius: 50%;
+  content: "";
+  height: 270px;
+  position: absolute;
+  width: 270px;
+}
+
+.heroContent::before {
+  right: -190px;
+  top: 16%;
+}
+
+.heroContent::after {
+  bottom: -190px;
+  left: -170px;
+}
+
+.eyebrow {
+  color: var(--wine);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.27em;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+}
+
+.eyebrowLight {
+  color: var(--gold);
+}
+
+.heroNames h1 {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(72px, 7.4vw, 118px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.74;
+  margin: 0;
+}
+
+.heroNames h1 > span,
+.heroNames h1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.nameAmpersand {
+  color: var(--gold);
+  font-size: 0.38em;
+  font-style: italic;
+  line-height: 1.2;
+  margin: 18px 0 14px;
+}
+
+.heroIntro {
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.65;
+  margin: 50px auto 30px;
+  max-width: 370px;
+}
+
+.heroDateBlock {
+  align-items: center;
+  border-bottom: 1px solid rgba(90, 24, 48, 0.32);
+  border-top: 1px solid rgba(90, 24, 48, 0.32);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr auto 1fr;
+  max-width: 370px;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.heroDateBlock span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heroDateBlock strong {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.heroLocation {
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: 0.19em;
+  margin: 18px 0 0;
+  text-transform: uppercase;
+}
+
+.roundArrow {
+  align-items: center;
+  border: 1px solid rgba(90, 24, 48, 0.35);
+  border-radius: 50%;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  margin-top: 42px;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  width: 42px;
+}
+
+.roundArrow:hover,
+.roundArrow:focus-visible {
+  background: var(--wine);
+  color: white;
+  transform: translateY(3px);
+}
+
+.countdownSection {
+  background: var(--deep-wine);
+  color: white;
+  padding: 80px 7vw 86px;
+  text-align: center;
+}
+
+.countdownSection h2 {
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(35px, 4vw, 58px);
+  font-weight: 400;
+  margin: 0 0 52px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(110px, 170px));
+  justify-content: center;
+}
+
+.countdownItem {
+  border-left: 1px solid rgba(255, 255, 255, 0.17);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.countdownItem:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.17);
+}
+
+.countdownValue {
+  color: var(--ivory);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(42px, 5vw, 68px);
+}
+
+.countdownLabel {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.introSection {
+  background: var(--paper);
+  padding: 130px 9vw 100px;
+  text-align: center;
+}
+
+.introSection h2,
+.familyCopy h2 {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.sectionLead {
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.8;
+  margin: 38px auto 0;
+  max-width: 590px;
+}
+
+.events {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.eventCard {
+  min-height: 760px;
+  overflow: hidden;
+  padding: 80px max(6vw, 54px);
+  position: relative;
+}
+
+.eventCardWedding {
+  background: var(--ivory);
+}
+
+.eventCardReception {
+  background: var(--wine);
+  color: white;
+}
+
+.eventNumber {
+  color: rgba(90, 24, 48, 0.09);
+  font-family: "Italiana", Georgia, serif;
+  font-size: 230px;
+  line-height: 1;
+  position: absolute;
+  right: -16px;
+  top: 18px;
+}
+
+.eventCardReception .eventNumber {
+  color: rgba(255, 255, 255, 0.07);
+}
+
+.eventBody {
+  position: relative;
+  z-index: 1;
+}
+
+.eventKicker,
+.detailLabel {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.eventKicker {
+  margin: 0 0 24px;
+}
+
+.eventBody h3 {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin: 0;
+  max-width: 500px;
+}
+
+.eventCardReception h3 {
+  color: var(--ivory);
+}
+
+.eventDetails {
+  border-bottom: 1px solid rgba(90, 24, 48, 0.17);
+  border-top: 1px solid rgba(90, 24, 48, 0.17);
+  display: flex;
+  gap: 60px;
+  margin: 50px 0 38px;
+  padding: 24px 0;
+}
+
+.eventCardReception .eventDetails {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.eventDetails > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eventDetails strong {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.venueBlock p {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  margin: 0 0 9px;
+}
+
+.venueBlock > span {
+  color: var(--muted);
+  display: block;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.eventCardReception .venueBlock > span {
+  color: rgba(255, 255, 255, 0.63);
+}
+
+.mapLink,
+.textLink {
+  border-bottom: 1px solid currentColor;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: 0.13em;
+  margin-top: 20px;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.eventActions {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+}
+
+.button {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  padding: 15px 22px;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+}
+
+.buttonSolid {
+  background: var(--wine);
+  color: white;
+}
+
+.eventCardReception .buttonSolid {
+  background: var(--ivory);
+  color: var(--wine);
+}
+
+.textLink {
+  color: var(--muted);
+  margin-top: 19px;
+}
+
+.eventCardReception .textLink {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.familySection {
+  background: var(--deep-wine);
+  color: white;
+  display: grid;
+  gap: 10vw;
+  grid-template-columns: 0.9fr 1.1fr;
+  padding: 130px 9vw;
+}
+
+.familyCopy h2 {
+  color: var(--ivory);
+  font-size: clamp(50px, 5.5vw, 78px);
+}
+
+.familyCopy > p:last-child {
+  color: rgba(255, 255, 255, 0.59);
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.8;
+  margin: 36px 0 0;
+  max-width: 390px;
+}
+
+.familyNames {
+  align-self: center;
+}
+
+.familyNames > div {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 30px 0;
+}
+
+.familyNames > div:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.familyNames span {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+}
+
+.familyNames p {
+  font-family: "Italiana", Georgia, serif;
+  font-size: 28px;
+  margin: 10px 0 5px;
+}
+
+.familyNames small {
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12px;
+}
+
+.portraitSection {
+  background: var(--ivory);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  min-height: 760px;
+  padding: 8vw;
+}
+
+.portraitFrame {
+  box-shadow: -26px 26px 0 var(--wine);
+  min-height: 620px;
+  overflow: hidden;
+}
+
+.portraitFrame img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  width: 100%;
+}
+
+.portraitQuote {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px 5vw;
+  text-align: center;
+}
+
+.miniMonogram {
+  border: 1px solid rgba(90, 24, 48, 0.3);
+  border-radius: 50%;
+  display: grid;
+  height: 78px;
+  place-items: center;
+  width: 78px;
+}
+
+.portraitQuote blockquote {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(42px, 5vw, 70px);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin: 42px 0 30px;
+}
+
+.portraitQuote p {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+footer {
+  align-items: center;
+  background: var(--paper);
+  display: flex;
+  justify-content: space-between;
+  padding: 42px 5vw;
+}
+
+.footerNames {
+  color: var(--wine);
+  font-family: "Italiana", Georgia, serif;
+  font-size: 24px;
+}
+
+.footerNames span {
+  color: var(--gold);
+  font-size: 0.75em;
+}
+
+footer > p:nth-child(2),
+footer a {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .siteHeader {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .siteHeader nav {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroPhoto {
+    min-height: 72svh;
+  }
+
+  .heroContent {
+    min-height: 780px;
+  }
+
+  .events,
+  .familySection,
+  .portraitSection {
+    grid-template-columns: 1fr;
+  }
+
+  .familySection {
+    gap: 80px;
+  }
+
+  .portraitSection {
+    gap: 80px;
+  }
+
+  .portraitQuote {
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .siteHeader {
+    height: 66px;
+    padding: 0 22px;
+  }
+
+  .hero {
+    padding-top: 66px;
+  }
+
+  .heroPhoto {
+    background-position: 50% 35%;
+    min-height: 62svh;
+  }
+
+  .photoCaption {
+    bottom: 22px;
+    left: 22px;
+  }
+
+  .heroContent {
+    min-height: 730px;
+    padding: 78px 22px 55px;
+  }
+
+  .heroNames h1 {
+    font-size: 70px;
+  }
+
+  .heroIntro {
+    max-width: 310px;
+  }
+
+  .heroDateBlock {
+    max-width: 320px;
+  }
+
+  .countdownSection {
+    padding: 70px 16px 76px;
+  }
+
+  .countdownSection h2 {
+    margin-bottom: 36px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .countdownValue {
+    font-size: 38px;
+  }
+
+  .countdownLabel {
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+
+  .introSection {
+    padding: 95px 24px 75px;
+  }
+
+  .introSection h2 {
+    font-size: 48px;
+  }
+
+  .eventCard {
+    min-height: 0;
+    padding: 68px 26px 74px;
+  }
+
+  .eventNumber {
+    font-size: 150px;
+  }
+
+  .eventBody h3 {
+    font-size: 49px;
+    max-width: 330px;
+  }
+
+  .eventDetails {
+    gap: 27px;
+    margin-top: 40px;
+  }
+
+  .eventDetails strong {
+    font-size: 14px;
+  }
+
+  .eventActions {
+    align-items: stretch;
+  }
+
+  .button {
+    text-align: center;
+  }
+
+  .textLink {
+    align-self: flex-start;
+  }
+
+  .familySection {
+    padding: 95px 26px;
+  }
+
+  .familyCopy h2 {
+    font-size: 49px;
+  }
+
+  .familyNames p {
+    font-size: 24px;
+  }
+
+  .portraitSection {
+    gap: 58px;
+    padding: 56px 28px 76px;
+  }
+
+  .portraitFrame {
+    box-shadow: -14px 14px 0 var(--wine);
+    min-height: 480px;
+  }
+
+  .portraitQuote {
+    padding: 20px 0 0;
+  }
+
+  .portraitQuote blockquote {
+    font-size: 44px;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 11px;
+    padding: 38px 24px;
+  }
+
+  footer p {
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
