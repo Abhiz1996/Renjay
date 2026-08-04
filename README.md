@@ -2,6 +2,8 @@
 
 A responsive online wedding invitation for Dr. Renjay R.V and Dr. Akhila J Sasi.
 
+Live on GitHub Pages: <https://abhiz1996.github.io/Renjay/>
+
 The site includes:
 
 - a live countdown to the wedding ceremony

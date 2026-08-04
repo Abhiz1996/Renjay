@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const WEDDING_DATE = new Date("2026-09-13T12:20:00+05:30").getTime();
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const weddingCalendarUrl =
   "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20of%20Dr.%20Renjay%20R.V%20%26%20Dr.%20Akhila%20J%20Sasi&dates=20260913T053000Z%2F20260913T073000Z&details=Reception%20at%2011%3A00%20AM.%20Muhurtham%20between%2012%3A20%20PM%20and%2012%3A55%20PM.&location=Safa%20Convention%20Centre%2C%20Mangalapuram%20Road%2C%20Thonnakkal%2C%20Kerala%20695317";
@@ -69,7 +70,7 @@ function CalendarLinks({ googleUrl }: { googleUrl: string }) {
       <a href={googleUrl} target="_blank" rel="noreferrer" className="button buttonSolid">
         Add to Google Calendar
       </a>
-      <a href="/renjay-akhila-wedding.ics" download className="textLink">
+      <a href={`${basePath}/renjay-akhila-wedding.ics`} download className="textLink">
         Download calendar file <span aria-hidden="true">↘</span>
       </a>
     </div>
@@ -94,7 +95,12 @@ export default function Home() {
       </header>
 
       <section className="hero" id="home">
-        <div className="heroPhoto" role="img" aria-label="Dr. Renjay and Dr. Akhila together in burgundy wedding attire">
+        <div
+          className="heroPhoto"
+          role="img"
+          aria-label="Dr. Renjay and Dr. Akhila together in burgundy wedding attire"
+          style={{ backgroundImage: `url("${basePath}/renjay-akhila.jpg")` }}
+        >
           <div className="photoWash" />
           <p className="photoCaption">A beginning, held close.</p>
         </div>

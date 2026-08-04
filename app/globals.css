@@ -114,7 +114,6 @@ a {
 }
 
 .heroPhoto {
-  background-image: url("/renjay-akhila.jpg");
   background-position: center 37%;
   background-size: cover;
   min-height: 780px;
