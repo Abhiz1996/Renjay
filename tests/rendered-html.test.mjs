@@ -36,6 +36,8 @@ test("server-renders the wedding invitation", async () => {
   assert.match(html, /RDR Convention Centre/);
   assert.match(html, /Tap to reveal a note/);
   assert.match(html, /Send your blessings/);
+  assert.match(html, /Light the sky/);
+  assert.doesNotMatch(html, /href="#blessings">A note/);
   assert.doesNotMatch(html, /Parents of the groom|Parents of the bride|Sharing the happiness/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });

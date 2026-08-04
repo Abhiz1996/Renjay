@@ -152,6 +152,51 @@ a {
   text-align: center;
 }
 
+.heroContent > * {
+  position: relative;
+  z-index: 1;
+}
+
+.heroSparkles {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.heroSparkles span {
+  animation: heroTwinkle 3.4s ease-in-out infinite;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(197, 160, 93, 0.75);
+  height: 4px;
+  opacity: 0.18;
+  position: absolute;
+  width: 4px;
+}
+
+.heroSparkles span:nth-child(1) { left: 12%; top: 18%; }
+.heroSparkles span:nth-child(2) { animation-delay: 0.4s; left: 80%; top: 24%; }
+.heroSparkles span:nth-child(3) { animation-delay: 0.8s; left: 18%; top: 48%; }
+.heroSparkles span:nth-child(4) { animation-delay: 1.2s; left: 86%; top: 53%; }
+.heroSparkles span:nth-child(5) { animation-delay: 1.6s; left: 26%; top: 77%; }
+.heroSparkles span:nth-child(6) { animation-delay: 2s; left: 73%; top: 82%; }
+.heroSparkles span:nth-child(7) { animation-delay: 2.4s; left: 47%; top: 12%; }
+.heroSparkles span:nth-child(8) { animation-delay: 2.8s; left: 92%; top: 70%; }
+.heroSparkles span:nth-child(9) { animation-delay: 3.2s; left: 7%; top: 66%; }
+
+@keyframes heroTwinkle {
+  0%, 100% {
+    opacity: 0.12;
+    transform: scale(0.55);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.45);
+  }
+}
+
 .heroContent::before,
 .heroContent::after {
   border: 1px solid rgba(90, 24, 48, 0.18);
@@ -512,7 +557,58 @@ a {
   display: grid;
   gap: 10vw;
   grid-template-columns: 0.9fr 1.1fr;
+  overflow: hidden;
   padding: 130px 9vw;
+  position: relative;
+}
+
+.celebrationSection > .celebrationIntro,
+.celebrationSection > .interactivePanel {
+  position: relative;
+  z-index: 2;
+}
+
+.ambientLights {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.ambientLights span {
+  animation: ambientDrift 7s ease-in-out infinite;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(197, 160, 93, 0.58);
+  height: 3px;
+  opacity: 0.2;
+  position: absolute;
+  width: 3px;
+}
+
+.ambientLights span:nth-child(1) { left: 4%; top: 18%; }
+.ambientLights span:nth-child(2) { animation-delay: -1s; left: 14%; top: 76%; }
+.ambientLights span:nth-child(3) { animation-delay: -2s; left: 25%; top: 38%; }
+.ambientLights span:nth-child(4) { animation-delay: -3s; left: 34%; top: 88%; }
+.ambientLights span:nth-child(5) { animation-delay: -4s; left: 46%; top: 12%; }
+.ambientLights span:nth-child(6) { animation-delay: -5s; left: 55%; top: 68%; }
+.ambientLights span:nth-child(7) { animation-delay: -6s; left: 64%; top: 32%; }
+.ambientLights span:nth-child(8) { animation-delay: -2.5s; left: 73%; top: 84%; }
+.ambientLights span:nth-child(9) { animation-delay: -3.5s; left: 82%; top: 20%; }
+.ambientLights span:nth-child(10) { animation-delay: -4.5s; left: 91%; top: 58%; }
+.ambientLights span:nth-child(11) { animation-delay: -1.5s; left: 42%; top: 52%; }
+.ambientLights span:nth-child(12) { animation-delay: -5.5s; left: 96%; top: 90%; }
+
+@keyframes ambientDrift {
+  0%, 100% {
+    opacity: 0.14;
+    transform: translateY(0) scale(0.7);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: translateY(-28px) scale(1.4);
+  }
 }
 
 .celebrationIntro h2 {
@@ -629,13 +725,22 @@ a {
   text-align: center;
 }
 
+.celebrationButtons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
 .burstStage {
   display: grid;
   place-items: center;
   position: relative;
 }
 
-.blessingButton {
+.blessingButton,
+.fireworkButton {
   align-items: center;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -655,16 +760,23 @@ a {
   z-index: 2;
 }
 
-.blessingButton span {
+.blessingButton span,
+.fireworkButton span {
   color: var(--blush);
   font-size: 15px;
 }
 
 .blessingButton:hover,
-.blessingButton:focus-visible {
+.blessingButton:focus-visible,
+.fireworkButton:hover,
+.fireworkButton:focus-visible {
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--gold);
   transform: scale(1.04);
+}
+
+.fireworkButton span {
+  color: var(--gold);
 }
 
 .blessingStatus {
@@ -699,6 +811,71 @@ a {
 
 .loveParticle:nth-child(3n) {
   color: var(--blush);
+}
+
+.fireworkDisplay {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+}
+
+.firework {
+  height: 4px;
+  left: var(--firework-x);
+  position: absolute;
+  top: var(--firework-y);
+  width: 4px;
+}
+
+.firework::after {
+  animation: fireworkFlash 1.1s ease-out var(--firework-delay) both;
+  background: var(--firework-color);
+  border-radius: 50%;
+  box-shadow: 0 0 24px var(--firework-color);
+  content: "";
+  height: 7px;
+  left: -2px;
+  position: absolute;
+  top: -2px;
+  width: 7px;
+}
+
+.fireworkSpark {
+  --spark-angle: calc(var(--spark-index) * 30deg);
+  animation: fireworkSpark 1.25s cubic-bezier(0.15, 0.75, 0.22, 1) var(--firework-delay) both;
+  background: var(--firework-color);
+  border-radius: 999px;
+  box-shadow: 0 0 8px var(--firework-color);
+  height: 20px;
+  left: 1px;
+  position: absolute;
+  top: -8px;
+  transform-origin: 50% 10px;
+  width: 2px;
+}
+
+@keyframes fireworkFlash {
+  0%, 18% { opacity: 0; transform: scale(0.2); }
+  22% { opacity: 1; transform: scale(1.8); }
+  100% { opacity: 0; transform: scale(0.4); }
+}
+
+@keyframes fireworkSpark {
+  0%, 18% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateY(0) scaleY(0.15);
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateY(-96px) scaleY(0.35);
+  }
 }
 
 @keyframes loveBurst {
@@ -909,6 +1086,8 @@ footer a {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }

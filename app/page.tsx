@@ -80,6 +80,15 @@ function CalendarLinks({ googleUrl }: { googleUrl: string }) {
 function CelebrationMoment() {
   const [noteOpen, setNoteOpen] = useState(false);
   const [blessingCount, setBlessingCount] = useState(0);
+  const [fireworkCount, setFireworkCount] = useState(0);
+
+  const fireworks = [
+    { x: "12%", y: "30%", delay: "0ms", color: "#c5a05d" },
+    { x: "36%", y: "18%", delay: "160ms", color: "#c98691" },
+    { x: "63%", y: "26%", delay: "320ms", color: "#f7f0e5" },
+    { x: "86%", y: "16%", delay: "480ms", color: "#c5a05d" },
+    { x: "76%", y: "62%", delay: "650ms", color: "#c98691" },
+  ];
 
   const sendBlessing = () => {
     setBlessingCount((count) => count + 1);
@@ -87,6 +96,33 @@ function CelebrationMoment() {
 
   return (
     <section className="celebrationSection" id="blessings">
+      <div className="ambientLights" aria-hidden="true">
+        {Array.from({ length: 12 }, (_, index) => <span key={index} />)}
+      </div>
+      {fireworkCount > 0 && (
+        <div className="fireworkDisplay" key={fireworkCount} aria-hidden="true">
+          {fireworks.map((firework, fireworkIndex) => (
+            <span
+              className="firework"
+              key={fireworkIndex}
+              style={{
+                "--firework-x": firework.x,
+                "--firework-y": firework.y,
+                "--firework-delay": firework.delay,
+                "--firework-color": firework.color,
+              } as CSSProperties}
+            >
+              {Array.from({ length: 12 }, (_, sparkIndex) => (
+                <span
+                  className="fireworkSpark"
+                  key={sparkIndex}
+                  style={{ "--spark-index": sparkIndex } as CSSProperties}
+                />
+              ))}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="celebrationIntro">
         <p className="eyebrow eyebrowLight">A little moment for you</p>
         <h2>Your presence is our favourite gift.</h2>
@@ -111,23 +147,33 @@ function CelebrationMoment() {
         </button>
 
         <div className="blessingArea">
-          <div className="burstStage" aria-hidden="true">
-            {blessingCount > 0 && (
-              <div className="particleBurst" key={blessingCount}>
-                {Array.from({ length: 16 }, (_, index) => (
-                  <span
-                    className="loveParticle"
-                    key={index}
-                    style={{ "--particle-index": index } as CSSProperties}
-                  >
-                    {index % 3 === 0 ? "♥" : "✦"}
-                  </span>
-                ))}
-              </div>
-            )}
-            <button type="button" className="blessingButton" onClick={sendBlessing}>
-              <span aria-hidden="true">♥</span>
-              {blessingCount === 0 ? "Send your blessings" : "Send more love"}
+          <div className="celebrationButtons">
+            <div className="burstStage">
+              {blessingCount > 0 && (
+                <div className="particleBurst" key={blessingCount} aria-hidden="true">
+                  {Array.from({ length: 16 }, (_, index) => (
+                    <span
+                      className="loveParticle"
+                      key={index}
+                      style={{ "--particle-index": index } as CSSProperties}
+                    >
+                      {index % 3 === 0 ? "♥" : "✦"}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <button type="button" className="blessingButton" onClick={sendBlessing}>
+                <span aria-hidden="true">♥</span>
+                {blessingCount === 0 ? "Send your blessings" : "Send more love"}
+              </button>
+            </div>
+            <button
+              type="button"
+              className="fireworkButton"
+              onClick={() => setFireworkCount((count) => count + 1)}
+            >
+              <span aria-hidden="true">✦</span>
+              Light the sky
             </button>
           </div>
           <p className="blessingStatus" aria-live="polite">
@@ -153,7 +199,6 @@ export default function Home() {
         <nav aria-label="Wedding invitation navigation">
           <a href="#celebrations">Celebrations</a>
           <a href="#venues">Venues</a>
-          <a href="#blessings">A note</a>
         </nav>
         <a className="headerDate" href="#celebrations">
           13.09.26
@@ -172,6 +217,9 @@ export default function Home() {
         </div>
 
         <div className="heroContent">
+          <div className="heroSparkles" aria-hidden="true">
+            {Array.from({ length: 9 }, (_, index) => <span key={index} />)}
+          </div>
           <p className="eyebrow">With the blessings of our families</p>
           <div className="heroNames">
             <h1>
