@@ -121,7 +121,11 @@ function InvitationOpening() {
         <div className="openingSeal" aria-hidden="true">
           R <span>&amp;</span> A
         </div>
-        <h2 id="opening-title">Renjay <span>&amp;</span> Akhila</h2>
+        <h2 id="opening-title">
+          <span className="openingName">Renjay</span>
+          <span className="openingAmpersand">&amp;</span>
+          <span className="openingName">Akhila</span>
+        </h2>
         <p className="openingDate">13 · 09 · 2026</p>
         <button type="button" className="openInvitationButton" onClick={openInvitation} autoFocus>
           <span>Open invitation</span>
