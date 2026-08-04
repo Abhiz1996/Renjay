@@ -10,9 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  pnpm_config_pm_on_fail: ignore
-
 concurrency:
   group: github-pages
   cancel-in-progress: true
