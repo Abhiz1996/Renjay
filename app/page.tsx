@@ -77,6 +77,61 @@ function CalendarLinks({ googleUrl }: { googleUrl: string }) {
   );
 }
 
+function InvitationOpening() {
+  const [opening, setOpening] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (!visible) return;
+    document.body.classList.add("invitationLocked");
+    return () => document.body.classList.remove("invitationLocked");
+  }, [visible]);
+
+  const openInvitation = () => {
+    if (opening) return;
+    setOpening(true);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => {
+      setVisible(false);
+      window.requestAnimationFrame(() => document.getElementById("invitation-title")?.focus());
+    }, reduceMotion ? 50 : 1450);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className={`openingScreen${opening ? " openingScreenActive" : ""}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="opening-title"
+    >
+      <div className="openingPanel openingPanelLeft" aria-hidden="true">
+        <span className="panelLine" />
+      </div>
+      <div className="openingPanel openingPanelRight" aria-hidden="true">
+        <span className="panelLine" />
+      </div>
+      <div className="openingGlow" aria-hidden="true" />
+      <div className="openingSparkles" aria-hidden="true">
+        {Array.from({ length: 10 }, (_, index) => <span key={index} />)}
+      </div>
+      <div className="openingContent">
+        <p className="openingEyebrow">You are joyfully invited</p>
+        <div className="openingSeal" aria-hidden="true">
+          R <span>&amp;</span> A
+        </div>
+        <h2 id="opening-title">Renjay <span>&amp;</span> Akhila</h2>
+        <p className="openingDate">13 · 09 · 2026</p>
+        <button type="button" className="openInvitationButton" onClick={openInvitation} autoFocus>
+          <span>Open invitation</span>
+          <span aria-hidden="true">↓</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function CelebrationMoment() {
   const [noteOpen, setNoteOpen] = useState(false);
   const [blessingCount, setBlessingCount] = useState(0);
@@ -192,6 +247,7 @@ function CelebrationMoment() {
 export default function Home() {
   return (
     <main>
+      <InvitationOpening />
       <header className="siteHeader">
         <a className="monogram" href="#home" aria-label="Renjay and Akhila - home">
           R<span>&amp;</span>A
@@ -222,7 +278,7 @@ export default function Home() {
           </div>
           <p className="eyebrow">With the blessings of our families</p>
           <div className="heroNames">
-            <h1>
+            <h1 id="invitation-title" tabIndex={-1}>
               Renjay
               <span className="nameAmpersand">&amp;</span>
               Akhila

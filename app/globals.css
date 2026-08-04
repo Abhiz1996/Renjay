@@ -27,6 +27,10 @@ body {
   font-weight: 300;
 }
 
+body.invitationLocked {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -35,6 +39,261 @@ a {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+.openingScreen {
+  align-items: center;
+  background: var(--deep-wine);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  transition: background 450ms ease 180ms;
+  z-index: 1000;
+}
+
+.openingScreenActive {
+  background: transparent;
+  pointer-events: none;
+}
+
+.openingPanel {
+  background-color: var(--ivory);
+  background-image: radial-gradient(circle at center, rgba(197, 160, 93, 0.1), transparent 42%), repeating-linear-gradient(90deg, rgba(90, 24, 48, 0.025) 0, rgba(90, 24, 48, 0.025) 1px, transparent 1px, transparent 5px);
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: transform 1.12s cubic-bezier(0.72, 0, 0.2, 1);
+  width: 50.2%;
+  z-index: 1;
+}
+
+.openingPanel::before,
+.openingPanel::after {
+  border: 1px solid rgba(197, 160, 93, 0.28);
+  border-radius: 50%;
+  content: "";
+  height: 420px;
+  position: absolute;
+  width: 420px;
+}
+
+.openingPanel::before {
+  top: -230px;
+}
+
+.openingPanel::after {
+  bottom: -260px;
+}
+
+.openingPanelLeft {
+  border-right: 1px solid rgba(90, 24, 48, 0.16);
+  left: 0;
+}
+
+.openingPanelLeft::before,
+.openingPanelLeft::after {
+  right: -105px;
+}
+
+.openingPanelRight {
+  border-left: 1px solid rgba(90, 24, 48, 0.16);
+  right: 0;
+}
+
+.openingPanelRight::before,
+.openingPanelRight::after {
+  left: -105px;
+}
+
+.panelLine {
+  border: 1px solid rgba(197, 160, 93, 0.2);
+  bottom: 28px;
+  left: 28px;
+  position: absolute;
+  right: 28px;
+  top: 28px;
+}
+
+.openingPanelLeft .panelLine {
+  border-right: 0;
+}
+
+.openingPanelRight .panelLine {
+  border-left: 0;
+}
+
+.openingScreenActive .openingPanelLeft {
+  transform: translateX(-102%);
+}
+
+.openingScreenActive .openingPanelRight {
+  transform: translateX(102%);
+}
+
+.openingContent {
+  align-items: center;
+  color: var(--wine);
+  display: flex;
+  flex-direction: column;
+  max-width: 620px;
+  padding: 40px 24px;
+  position: relative;
+  text-align: center;
+  transition: opacity 400ms ease, transform 500ms ease;
+  z-index: 4;
+}
+
+.openingScreenActive .openingContent {
+  opacity: 0;
+  transform: scale(0.94) translateY(-12px);
+}
+
+.openingEyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+}
+
+.openingSeal {
+  align-items: center;
+  background: var(--wine);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px var(--ivory), 0 0 0 8px rgba(90, 24, 48, 0.25), 0 14px 32px rgba(53, 16, 29, 0.2);
+  color: var(--ivory);
+  display: flex;
+  font-family: "Italiana", Georgia, serif;
+  font-size: 27px;
+  height: 92px;
+  justify-content: center;
+  letter-spacing: -2px;
+  margin-bottom: 38px;
+  position: relative;
+  width: 92px;
+}
+
+.openingSeal span {
+  color: var(--gold);
+  font-size: 0.72em;
+  margin: 0 5px;
+}
+
+.openingContent h2 {
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(54px, 8vw, 106px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.openingContent h2 span {
+  color: var(--gold);
+  font-size: 0.55em;
+  font-style: italic;
+  margin: 0 8px;
+}
+
+.openingDate {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  margin: 27px 0 36px;
+}
+
+.openInvitationButton {
+  align-items: center;
+  background: var(--wine);
+  border: 1px solid var(--wine);
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  gap: 18px;
+  letter-spacing: 0.17em;
+  padding: 16px 22px 16px 26px;
+  text-transform: uppercase;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.openInvitationButton > span:last-child {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  display: flex;
+  height: 25px;
+  justify-content: center;
+  width: 25px;
+}
+
+.openInvitationButton:hover,
+.openInvitationButton:focus-visible {
+  background: var(--deep-wine);
+  transform: translateY(-3px);
+}
+
+.openingGlow {
+  background: radial-gradient(circle, rgba(255, 244, 211, 0.95) 0, rgba(197, 160, 93, 0.26) 32%, transparent 70%);
+  height: 180px;
+  left: calc(50% - 90px);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 90px);
+  width: 180px;
+  z-index: 3;
+}
+
+.openingScreenActive .openingGlow {
+  animation: openingGlow 900ms ease-out 180ms both;
+}
+
+@keyframes openingGlow {
+  0% { opacity: 0; transform: scale(0.2); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: scale(5); }
+}
+
+.openingSparkles {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
+}
+
+.openingSparkles span {
+  animation: openingTwinkle 2.6s ease-in-out infinite;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(197, 160, 93, 0.8);
+  height: 4px;
+  opacity: 0.25;
+  position: absolute;
+  width: 4px;
+}
+
+.openingSparkles span:nth-child(1) { left: 15%; top: 18%; }
+.openingSparkles span:nth-child(2) { animation-delay: 0.3s; left: 84%; top: 21%; }
+.openingSparkles span:nth-child(3) { animation-delay: 0.6s; left: 22%; top: 48%; }
+.openingSparkles span:nth-child(4) { animation-delay: 0.9s; left: 77%; top: 53%; }
+.openingSparkles span:nth-child(5) { animation-delay: 1.2s; left: 9%; top: 76%; }
+.openingSparkles span:nth-child(6) { animation-delay: 1.5s; left: 91%; top: 79%; }
+.openingSparkles span:nth-child(7) { animation-delay: 1.8s; left: 35%; top: 84%; }
+.openingSparkles span:nth-child(8) { animation-delay: 2.1s; left: 66%; top: 13%; }
+.openingSparkles span:nth-child(9) { animation-delay: 2.4s; left: 48%; top: 8%; }
+.openingSparkles span:nth-child(10) { animation-delay: 0.45s; left: 54%; top: 91%; }
+
+@keyframes openingTwinkle {
+  0%, 100% { opacity: 0.18; transform: scale(0.6); }
+  50% { opacity: 0.9; transform: scale(1.5); }
 }
 
 .siteHeader {
@@ -950,6 +1209,35 @@ footer a {
 }
 
 @media (max-width: 600px) {
+  .openingPanel .panelLine {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    top: 16px;
+  }
+
+  .openingContent {
+    padding: 30px 18px;
+  }
+
+  .openingContent h2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 63px;
+  }
+
+  .openingContent h2 span {
+    font-size: 0.42em;
+    line-height: 1.4;
+    margin: 5px 0;
+  }
+
+  .openingSeal {
+    height: 76px;
+    margin-bottom: 30px;
+    width: 76px;
+  }
+
   .siteHeader {
     height: 66px;
     padding: 0 22px;

@@ -31,6 +31,7 @@ test("server-renders the wedding invitation", async () => {
   assert.match(html, /<title>Renjay &amp; Akhila \| Wedding Invitation<\/title>/i);
   assert.match(html, /Renjay/);
   assert.match(html, /Akhila/);
+  assert.match(html, /Open invitation/);
   assert.match(html, /13 September 2026/);
   assert.match(html, /Safa Convention Centre/);
   assert.match(html, /RDR Convention Centre/);
