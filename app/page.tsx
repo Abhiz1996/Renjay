@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 const WEDDING_DATE = new Date("2026-09-13T12:20:00+05:30").getTime();
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -77,6 +77,72 @@ function CalendarLinks({ googleUrl }: { googleUrl: string }) {
   );
 }
 
+function CelebrationMoment() {
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [blessingCount, setBlessingCount] = useState(0);
+
+  const sendBlessing = () => {
+    setBlessingCount((count) => count + 1);
+  };
+
+  return (
+    <section className="celebrationSection" id="blessings">
+      <div className="celebrationIntro">
+        <p className="eyebrow eyebrowLight">A little moment for you</p>
+        <h2>Your presence is our favourite gift.</h2>
+        <p>Tap the card for a note from us, then send a little love our way.</p>
+      </div>
+
+      <div className="interactivePanel">
+        <button
+          type="button"
+          className={`noteCard${noteOpen ? " noteCardOpen" : ""}`}
+          onClick={() => setNoteOpen((open) => !open)}
+          aria-expanded={noteOpen}
+        >
+          <span className="noteCardTopline">
+            <span>{noteOpen ? "A note from us" : "Tap to reveal a note"}</span>
+            <span className="noteToggle" aria-hidden="true">+</span>
+          </span>
+          <span className="noteMessage">
+            Come for the vows, stay for the laughter, and leave with a heart full of memories.
+          </span>
+          <span className="noteSignature">With love, Renjay &amp; Akhila</span>
+        </button>
+
+        <div className="blessingArea">
+          <div className="burstStage" aria-hidden="true">
+            {blessingCount > 0 && (
+              <div className="particleBurst" key={blessingCount}>
+                {Array.from({ length: 16 }, (_, index) => (
+                  <span
+                    className="loveParticle"
+                    key={index}
+                    style={{ "--particle-index": index } as CSSProperties}
+                  >
+                    {index % 3 === 0 ? "♥" : "✦"}
+                  </span>
+                ))}
+              </div>
+            )}
+            <button type="button" className="blessingButton" onClick={sendBlessing}>
+              <span aria-hidden="true">♥</span>
+              {blessingCount === 0 ? "Send your blessings" : "Send more love"}
+            </button>
+          </div>
+          <p className="blessingStatus" aria-live="polite">
+            {blessingCount === 0
+              ? "One tap, one little shower of love."
+              : blessingCount === 1
+                ? "Your blessings mean the world to us."
+                : `${blessingCount} showers of love — our hearts are full.`}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main>
@@ -86,8 +152,8 @@ export default function Home() {
         </a>
         <nav aria-label="Wedding invitation navigation">
           <a href="#celebrations">Celebrations</a>
-          <a href="#families">Families</a>
           <a href="#venues">Venues</a>
+          <a href="#blessings">A note</a>
         </nav>
         <a className="headerDate" href="#celebrations">
           13.09.26
@@ -193,31 +259,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="familySection" id="families">
-        <div className="familyCopy">
-          <p className="eyebrow eyebrowLight">With full hearts</p>
-          <h2>Our families joyfully invite you.</h2>
-          <p>
-            Your love, laughter, and blessings will make our celebrations complete.
-          </p>
-        </div>
-        <div className="familyNames">
-          <div>
-            <span>Parents of the groom</span>
-            <p>Raju T &amp; Vanaja N.K</p>
-            <small>Sarovaram, Kuravankonam, Kowdiar</small>
-          </div>
-          <div>
-            <span>Parents of the bride</span>
-            <p>K. Sasi Ambady &amp; Indhulekha Sasi</p>
-            <small>Ambady, Kurakkada, Korani</small>
-          </div>
-          <div>
-            <span>Sharing the happiness</span>
-            <p>Sanjay R.V</p>
-          </div>
-        </div>
-      </section>
+      <CelebrationMoment />
 
       <footer>
         <p className="footerNames">Renjay <span>&amp;</span> Akhila</p>
