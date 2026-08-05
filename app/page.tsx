@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 
+const WEDDING_DATE = new Date("2026-09-13T12:20:00+05:30").getTime();
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const weddingCalendarUrl =
@@ -15,6 +16,53 @@ const safaMapsUrl =
 
 const rdrMapsUrl =
   "https://www.google.com/maps/search/?api=1&query=RDR%20Convention%20Centre%2C%20Kochar%20Road%2C%20Edapazhanji%2C%20Thiruvananthapuram%2C%20Kerala%20695014";
+
+type Countdown = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
+const initialCountdown: Countdown = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+};
+
+function getCountdown(): Countdown {
+  const remaining = Math.max(WEDDING_DATE - Date.now(), 0);
+
+  return {
+    days: Math.floor(remaining / 86_400_000),
+    hours: Math.floor((remaining / 3_600_000) % 24),
+    minutes: Math.floor((remaining / 60_000) % 60),
+    seconds: Math.floor((remaining / 1_000) % 60),
+  };
+}
+
+function CountdownTimer() {
+  const [time, setTime] = useState<Countdown>(initialCountdown);
+
+  useEffect(() => {
+    const update = () => setTime(getCountdown());
+    update();
+    const interval = window.setInterval(update, 1000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="countdown" aria-label="Countdown to the wedding ceremony">
+      {Object.entries(time).map(([label, value]) => (
+        <div className="countdownItem" key={label}>
+          <span className="countdownValue">{String(value).padStart(2, "0")}</span>
+          <span className="countdownLabel">{label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function GoogleCalendarLink({ googleUrl }: { googleUrl: string }) {
   return (
@@ -81,118 +129,6 @@ function InvitationOpening() {
         </div>
       </div>
     </div>
-  );
-}
-
-function CelebrationMoment() {
-  const [noteOpen, setNoteOpen] = useState(false);
-  const [blessingCount, setBlessingCount] = useState(0);
-  const [fireworkCount, setFireworkCount] = useState(0);
-
-  const fireworks = [
-    { x: "12%", y: "30%", delay: "0ms", color: "#c5a05d" },
-    { x: "36%", y: "18%", delay: "160ms", color: "#c98691" },
-    { x: "63%", y: "26%", delay: "320ms", color: "#f7f0e5" },
-    { x: "86%", y: "16%", delay: "480ms", color: "#c5a05d" },
-    { x: "76%", y: "62%", delay: "650ms", color: "#c98691" },
-  ];
-
-  const sendBlessing = () => {
-    setBlessingCount((count) => count + 1);
-  };
-
-  return (
-    <section className="celebrationSection" id="blessings">
-      <div className="ambientLights" aria-hidden="true">
-        {Array.from({ length: 12 }, (_, index) => <span key={index} />)}
-      </div>
-      {fireworkCount > 0 && (
-        <div className="fireworkDisplay" key={fireworkCount} aria-hidden="true">
-          {fireworks.map((firework, fireworkIndex) => (
-            <span
-              className="firework"
-              key={fireworkIndex}
-              style={{
-                "--firework-x": firework.x,
-                "--firework-y": firework.y,
-                "--firework-delay": firework.delay,
-                "--firework-color": firework.color,
-              } as CSSProperties}
-            >
-              {Array.from({ length: 12 }, (_, sparkIndex) => (
-                <span
-                  className="fireworkSpark"
-                  key={sparkIndex}
-                  style={{ "--spark-index": sparkIndex } as CSSProperties}
-                />
-              ))}
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="celebrationIntro">
-        <p className="eyebrow eyebrowLight">A little moment for you</p>
-        <h2>Your presence is our favourite gift.</h2>
-        <p>Tap the card for a note from us, then send a little love our way.</p>
-      </div>
-
-      <div className="interactivePanel">
-        <button
-          type="button"
-          className={`noteCard${noteOpen ? " noteCardOpen" : ""}`}
-          onClick={() => setNoteOpen((open) => !open)}
-          aria-expanded={noteOpen}
-        >
-          <span className="noteCardTopline">
-            <span>{noteOpen ? "A note from us" : "Tap to reveal a note"}</span>
-            <span className="noteToggle" aria-hidden="true">+</span>
-          </span>
-          <span className="noteMessage">
-            Come for the vows, stay for the laughter, and leave with a heart full of memories.
-          </span>
-          <span className="noteSignature">With love, Renjay &amp; Akhila</span>
-        </button>
-
-        <div className="blessingArea">
-          <div className="celebrationButtons">
-            <div className="burstStage">
-              {blessingCount > 0 && (
-                <div className="particleBurst" key={blessingCount} aria-hidden="true">
-                  {Array.from({ length: 16 }, (_, index) => (
-                    <span
-                      className="loveParticle"
-                      key={index}
-                      style={{ "--particle-index": index } as CSSProperties}
-                    >
-                      {index % 3 === 0 ? "♥" : "✦"}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <button type="button" className="blessingButton" onClick={sendBlessing}>
-                <span aria-hidden="true">♥</span>
-                {blessingCount === 0 ? "Send your blessings" : "Send more love"}
-              </button>
-            </div>
-            <button
-              type="button"
-              className="fireworkButton"
-              onClick={() => setFireworkCount((count) => count + 1)}
-            >
-              <span aria-hidden="true">✦</span>
-              Light the sky
-            </button>
-          </div>
-          <p className="blessingStatus" aria-live="polite">
-            {blessingCount === 0
-              ? "One tap, one little shower of love."
-              : blessingCount === 1
-                ? "Your blessings mean the world to us."
-                : `${blessingCount} showers of love — our hearts are full.`}
-          </p>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -271,6 +207,12 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="countdownSection" aria-labelledby="countdown-heading">
+        <p className="eyebrow eyebrowLight">Counting down to our day</p>
+        <h2 id="countdown-heading">The celebration begins in</h2>
+        <CountdownTimer />
+      </section>
+
       <section className="introSection" id="celebrations">
         <p className="eyebrow">Save the dates</p>
         <h2>Two beautiful days.<br />One joyful beginning.</h2>
@@ -302,8 +244,6 @@ export default function Home() {
           </div>
         </article>
       </section>
-
-      <CelebrationMoment />
 
       <footer>
         <p className="footerNames">Renjay <span>&amp;</span> Akhila</p>

@@ -638,6 +638,51 @@ a {
   text-transform: uppercase;
 }
 
+.countdownSection {
+  background: var(--deep-wine);
+  color: white;
+  padding: 80px 7vw 86px;
+  text-align: center;
+}
+
+.countdownSection h2 {
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(35px, 4vw, 58px);
+  font-weight: 400;
+  margin: 0 0 52px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(110px, 170px));
+  justify-content: center;
+}
+
+.countdownItem {
+  border-left: 1px solid rgba(255, 255, 255, 0.17);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.countdownItem:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.17);
+}
+
+.countdownValue {
+  color: var(--ivory);
+  font-family: "Italiana", Georgia, serif;
+  font-size: clamp(42px, 5vw, 68px);
+}
+
+.countdownLabel {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
 .introSection {
   background: var(--paper);
   padding: 130px 9vw 100px;
@@ -1290,6 +1335,27 @@ footer a {
 
   .heroTimings strong {
     font-size: 13px;
+  }
+
+  .countdownSection {
+    padding: 70px 16px 76px;
+  }
+
+  .countdownSection h2 {
+    margin-bottom: 36px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .countdownValue {
+    font-size: 38px;
+  }
+
+  .countdownLabel {
+    font-size: 7px;
+    letter-spacing: 0.14em;
   }
 
   .introSection {

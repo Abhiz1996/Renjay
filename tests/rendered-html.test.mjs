@@ -38,11 +38,11 @@ test("server-renders the wedding invitation", async () => {
   assert.match(html, /Safa Convention Centre/);
   assert.match(html, /RDR Convention Centre/);
   assert.match(html, /Add to Google Calendar/);
-  assert.match(html, /Tap to reveal a note/);
-  assert.match(html, /Send your blessings/);
-  assert.match(html, /Light the sky/);
+  assert.match(html, /Counting down to our day/);
+  assert.match(html, /The celebration begins in/);
   assert.doesNotMatch(html, /href="#blessings">A note/);
   assert.doesNotMatch(html, /Parents of the groom|Parents of the bride|Sharing the happiness/);
+  assert.doesNotMatch(html, /Your presence is our favourite gift|Tap to reveal a note|Send your blessings|Light the sky/);
   assert.doesNotMatch(html, /Until we say|Download calendar file|eventCardWedding/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
