@@ -40,6 +40,10 @@ test("server-renders the wedding invitation", async () => {
   assert.match(html, /Add to Google Calendar/);
   assert.match(html, /Counting down to our day/);
   assert.match(html, /The celebration begins in/);
+  assert.ok(
+    html.indexOf("RDR Convention Centre") < html.indexOf("Counting down to our day"),
+    "reception details should appear before the countdown",
+  );
   assert.doesNotMatch(html, /href="#blessings">A note/);
   assert.doesNotMatch(html, /Parents of the groom|Parents of the bride|Sharing the happiness/);
   assert.doesNotMatch(html, /Your presence is our favourite gift|Tap to reveal a note|Send your blessings|Light the sky/);

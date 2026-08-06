@@ -207,20 +207,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="countdownSection" aria-labelledby="countdown-heading">
-        <p className="eyebrow eyebrowLight">Counting down to our day</p>
-        <h2 id="countdown-heading">The celebration begins in</h2>
-        <CountdownTimer />
-      </section>
-
-      <section className="introSection" id="celebrations">
-        <p className="eyebrow">Save the dates</p>
-        <h2>Two beautiful days.<br />One joyful beginning.</h2>
-        <p className="sectionLead">
-          We would be honoured by your presence as we celebrate our marriage and begin this new chapter together.
-        </p>
-      </section>
-
       <section className="events" id="venues" aria-label="Wedding events">
         <article className="eventCard eventCardReception">
           <div className="eventNumber">02</div>
@@ -243,6 +229,20 @@ export default function Home() {
             <GoogleCalendarLink googleUrl={receptionCalendarUrl} />
           </div>
         </article>
+      </section>
+
+      <section className="introSection" id="celebrations">
+        <p className="eyebrow">Save the dates</p>
+        <h2>Two beautiful days.<br />One joyful beginning.</h2>
+        <p className="sectionLead">
+          We would be honoured by your presence as we celebrate our marriage and begin this new chapter together.
+        </p>
+      </section>
+
+      <section className="countdownSection" aria-labelledby="countdown-heading">
+        <p className="eyebrow eyebrowLight">Counting down to our day</p>
+        <h2 id="countdown-heading">The celebration begins in</h2>
+        <CountdownTimer />
       </section>
 
       <footer>
